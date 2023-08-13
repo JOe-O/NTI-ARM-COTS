@@ -38,7 +38,7 @@ MCAL (Microcontroller Abstraction Layer drivers)
 1. Clone this repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/JOe-O/NTI-Embedded.git
+git clone https://github.com/JOe-O/NTI-ARM-COTS.git
 ```
 2. Navigate to the relevant folders ('APP', 'MCAL', 'HAL', or 'LIB') to access the corresponding code, drivers, and libraries  and run the applications on your ATMEGA32 board.
 
