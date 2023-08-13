@@ -5,7 +5,7 @@
 
 ## Overview
 
-This repository contains the projects and materials for the Embedded Software Course I am taking from the National Telecommunication Institute (NTI), under the guidance of Engineer Ahmed Attia. The course is focused on learning and implementing embedded software for various applications.
+This repository contains the projects and materials for the (ARM PART) of Embedded Software Course I am taking from the National Telecommunication Institute (NTI), under the guidance of Engineer Ahmed Attia. The course is focused on learning and implementing embedded software for various applications.
 
 ## Table of Contents
 
