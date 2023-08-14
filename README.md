@@ -1,11 +1,11 @@
 # Embedded Software Course Repository
 
-![GitHub last commit](https://img.shields.io/github/last-commit/JOe-O/NTI-Embedded)
-![GitHub repo size](https://img.shields.io/github/repo-size/JOe-O/NTI-Embedded)
+![GitHub last commit](https://img.shields.io/github/last-commit/JOe-O/NTI-ARM-COTS)
+![GitHub repo size](https://img.shields.io/github/repo-size/JOe-O/NTI-ARM-COTS)
 
 ## Overview
 
-This repository contains the projects and materials for the Embedded Software Course I am taking from the National Telecommunication Institute (NTI), under the guidance of Engineer Ahmed Attia. The course is focused on learning and implementing embedded software for various applications.
+This repository contains the projects and materials for the (ARM PART) of Embedded Software Course I am taking from the National Telecommunication Institute (NTI), under the guidance of Engineer Ahmed Attia. The course is focused on learning and implementing embedded software for various applications.
 
 ## Table of Contents
 
@@ -38,7 +38,7 @@ MCAL (Microcontroller Abstraction Layer drivers)
 1. Clone this repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/JOe-O/NTI-Embedded.git
+git clone https://github.com/JOe-O/NTI-ARM-COTS.git
 ```
 2. Navigate to the relevant folders ('APP', 'MCAL', 'HAL', or 'LIB') to access the corresponding code, drivers, and libraries  and run the applications on your ATMEGA32 board.
 
