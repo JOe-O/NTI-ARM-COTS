@@ -16,4 +16,7 @@
 #define INT_EXTI_PORT			INT_EXTI_PORTC
 
 
+#define SENSE_MODE				EXTI_RISING_FALLING
+
+
 #endif /* EXTI_CONFIG_H_ */

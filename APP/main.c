@@ -2,14 +2,27 @@
 #include "typedef.h"
 #include "bitMath.h"
 
-//#define PORTA_MODE         *((volatile u32 *)(0x48000000))
-//#define GPIOx_ODR          *((volatile u32 *)(0x48000014))
-
 #include "RCC_int.h"
 
 #include "DIO_int.h"
+#include "DIO_Priv.h"
 //#include "LCD_int.h"
 #include "NVIC_int.h"
+
+#include "EXTI_Private.h"
+#include "EXTI_int.h"
+
+#include "SYSTICK.h"
+
+void _delay_ms(u32 ticks)
+{
+	u32 i;
+	for(i=0;i<(ticks*500);i++)
+	{
+		asm("NOP");
+
+	}
+}
 
 
 void EXTI0_IRQHandler()
@@ -35,14 +48,38 @@ void EXTI1_IRQHandler()
 	NVIC_voidClrPendingFlag(7);
 
 }
-void _delay_ms(u32 ticks)
-{
-	u32 i;
-	for(i=0;i<(ticks*500);i++)
-	{
-		asm("NOP");
 
-	}
+void EXTI15_10_IRQHandler()
+{
+	DIO_voidSetPinValue(PORTA, DIO_PIN5, DIO_LOW);
+
+	_delay_ms(2000);
+	DIO_voidSetPinValue(PORTA, DIO_PIN5, DIO_HIGH);
+	_delay_ms(2000);
+
+	EXTI_voidDisableEXTI();
+
+}
+void ISR()
+{
+	//if(DIO_u8GetPinValue(PORTA, 5) == 0)
+	//{
+	//DIO_voidSetPinValue(PORTA, DIO_PIN5, DIO_HIGH);
+	//_delay_ms(2000);
+	//}else if(DIO_u8GetPinValue(PORTA, 5) == 1)
+	//{
+	//	DIO_voidSetPinValue(PORTA, DIO_PIN5, DIO_LOW);
+	//	_delay_ms(2000);
+	//}
+//	SYSTICK_Stop();
+
+	TGL_BIT(GPIOA_ODR,5);
+	/*_delay_ms(2000);
+	TGL_BIT(GPIOA_ODR,5);
+	_delay_ms(2000);*///
+
+
+
 }
 int main(void)
 {
@@ -62,18 +99,30 @@ int main(void)
 	RCC_voidInit();
 	RCC_voidPerepheralEN(AHBENR, 17);//port A enable
 	RCC_voidPerepheralEN(AHBENR, 19);//port C enable
+	RCC_voidPerepheralEN(APB2ENR,0); //sysconfig enable
 	//LCD_voidInit();
-	NVIC_voidInit();
+	//NVIC_voidInit();
+	SYSTICK_SetCallback(ISR);
+	SYSTICK_Init();
+	SYSTICK_SetTime(2000000);
+	SYSTICK_Start();
+	//EXTI_voidInit();
+	//EXTI_voidEnableLine();
+	//EXTI_voidSenseMode();
 
-	NVIC_voidEnabeInterrupt(6);
-	NVIC_voidSetPriority(6,0b0111);
+	//NVIC_voidEnabeInterrupt(40);
+	//NVIC_voidSetPriority(6,0b0111);
 
-	NVIC_voidEnabeInterrupt(7);
-	NVIC_voidSetPriority(7,0b0011);
+
+
+	//NVIC_voidEnabeInterrupt(7);
+	//NVIC_voidSetPriority(7,0b0011);
 
 	DIO_voidSetPinDirection(PORTA, DIO_PIN5, DIO_OUTPUT_PUSH_PULL_LOW_FREQ);
+	DIO_voidSetPinValue(PORTA, DIO_PIN5, DIO_LOW);
 
-	NVIC_voidSetPendingFlag(6);
+
+	//NVIC_voidSetPendingFlag(6);
 
 	//SET_BIT(PORTA_MODE,10);
 	//CLR_BIT(PORTA_MODE,11);

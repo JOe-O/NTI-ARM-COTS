@@ -10,9 +10,9 @@
 
 
 void EXTI_voidInit(void);
-void EXTI_voidSenseMode(u8 EXTI_id,u8 EXTI_mode);
-void EXTI_voidEnable(void);
-
+void EXTI_voidSenseMode(void);
+void EXTI_voidEnableLine(void);
+void EXTI_voidDisableEXTI(void);
 
 
 

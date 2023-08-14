@@ -34,11 +34,31 @@ void EXTI_voidInit(void)
 
 
 }
-void EXTI_voidSenseMode(u8 EXTI_id,u8 EXTI_mode)
+void EXTI_voidSenseMode()
 {
 
+#if SENSE_MODE == EXTI_RISING
+
+	EXTI -> RTSR1 = 1 << LINE;
+
+#elif SENSE_MODE == EXTI_FALLING
+
+	EXTI -> FTSR1 = 1 << LINE;
+
+#elif SENSE_MODE == EXTI_RISING_FALLING
+
+	EXTI -> RTSR1 = 1 << LINE;
+	EXTI -> FTSR1 = 1 << LINE;
+
+#endif
+
+
 }
-void EXTI_voidEnable(void)
+void EXTI_voidEnableLine(void)
 {
 	EXTI -> IMR1 = 1 << LINE;
+}
+void EXTI_voidDisableEXTI(void)
+{
+	EXTI -> PR1 = 1 << LINE;
 }

@@ -15,6 +15,11 @@
 #define INT_EXTI_PORTC			3
 #define INT_EXTI_PORTD			4
 
+#define EXTI_RISING					5
+#define EXTI_FALLING				6
+#define EXTI_RISING_FALLING			7
+
+
 typedef struct
 {
 	volatile u32 IMR1;
